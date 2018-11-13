@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load custom_markdown %}
+
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block main %}
+    <article class="article article-type-post">
+        <div class="article-meta">
+            {# 创建时间 #}
+          <a class="article-date">
+            <time>{{ post.created|date }}</time>
+          </a>
+            {# 帖子类别 #}
+          <div class="article-category">
+            <a class="article-category-link" href="#" target="_blank">{{ post.category }}</a>
+          </div>
+        </div>
+
+        <div class="article-inner">
+            <header class="article-header">
+                {# 帖子标题 #}
+                <h1 itemprop="name">
+                    <a class="article-title">{{ post.title }}</a>
+                </h1>
+            </header>
+
+            <div class="article-entry" itemprop="articleBody">
+            <h2>前言</h2>
+            <hr>
+            {# 帖子内容 #}
+            {{ post.content|mark|safe }}
+            </div>
+
+            <footer class="article-footer">
+              <a data-url="存放文章的url" class="article-share-link">分享</a>
+             </footer>
+        </div>
+    </article>
+{% endblock main %}

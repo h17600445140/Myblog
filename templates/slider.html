@@ -1,0 +1,61 @@
+{# 全局上下文的内容 #}
+<aside id="sidebar">
+
+    <!--分类-->
+  <div class="widget-wrap">
+     <h3 class="widget-title">分类</h3>
+      <div class="widget">
+       <ul class="category-list">
+          {% for category in category %}   {# category是一个列表，列表里面是字典 #}
+          <li class="category-list-item">
+              <a class="category-list-link" href="/category/{{ category.category }}">{{ category.category__name }}</a>
+              <span class="category-list-count">{{ category.count }}</span>
+          </li>
+          {% endfor %}
+       </ul>
+     </div>
+  </div>
+
+     <!--归档-->
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list">
+          {% for archive in archive %}
+          <li class="archive-list-item">
+              <a class="archive-list-link" href="/archive/{{ archive.created.year }}/{{ archive.created.month }}">{{ archive.created.year }}年{{ archive.created.month }}月</a>
+              <span class="archive-list-count">{{ archive.count }}</span>
+          </li>
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+    <!--近期文章-->
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+          {% for post in recent %}
+          <li>
+            <a href="/page/content/{{ post.id }}">{{ post.title }}</a>
+          </li>
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+          <li>
+            <a href="http://www.cup.edu.cn/" target="_blank">中国石油大学北京</a>
+          </li>
+          <li>
+            <a href="http://www.baidu.com/" target="_blank">百度一下</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</aside>

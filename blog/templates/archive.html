@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block main %}
+
+    <div class="archives-wrap">
+    {% regroup posts by created.year as year_group %}
+    {# [GroupedResult(grouper=2017,list=[<Post:数据库操作>])] #}
+        {% for year in year_group %}
+            {# 显示头部的时间 #}
+            <div class="archive-year-wrap">
+                <span class="archive-year">{{ year.grouper }}</span>
+            </div>
+
+        {# 显示内容的时间和内容 #}
+        <div class="archives">
+            {% for post in year.list %}
+            <article class="archive-article archive-type-post">
+                <div class="archive-article-inner">
+                     <header class="archive-article-header">
+                         <a href="#" class="archive-article-date">
+                         <time>{{ post.created.year }}{{ post.created.month }}</time>
+                         </a>
+                         <h1 itemprop="name">
+                              <a class="archive-article-title" target="_blank" href="/page/content/{{ post.id }}">{{ post.title }}</a>
+                         </h1>
+                     </header>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock main %}
